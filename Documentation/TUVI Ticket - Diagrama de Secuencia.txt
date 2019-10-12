@@ -1,0 +1,27 @@
+title TUVI Ticket - Diagrama de Secuencia
+
+actor Cliente
+actor Proveedor
+database Base de Datos
+actor Administrador
+participant Cart
+participant Address
+participant Evento
+
+activate Base de Datos
+activate Cliente
+activate Proveedor
+
+Proveedor ->Base de Datos: crearCuenta(mail:String, contraseña:String, nombre:String, documento:long, direccion:String)
+Base de Datos -->Proveedor: mailDeConfirmacion()
+Cliente ->Base de Datos: crearCuenta(mail:String, contraseña:String, nombre:String, documento:long, direccion:String)
+Base de Datos -->Cliente: mailDeConfirmacion()
+
+Proveedor ->Base de Datos: login(mail:String, contraseña:String)
+
+Proveedor ->Base de Datos: crearEvento()
+
+Cliente ->Base de Datos: login(mail:String, contraseña:String
+
+Administrador ->Base de Datos: desactivarCuenta()
+

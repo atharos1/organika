@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TuviTicket</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 60vh;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+
+        .card-show {
+          height: 100% !important;
+        }
+      }
+    </style>
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="fragment_navbar"></div>
+    <!-- Navbar -->
+
+    <!-- Main layout -->
+    <main>
+      <div class="container">
+        <div style="margin-top: 60pt">
+          <h1>Eventos disponibles:</h1>
+        </div>
+        <div id="event-grid">
+        </div>
+      </div>
+    </main>
+    <!-- Main layout -->
+
+    <div id="modal_login"></div>
+    <div id="modal_signup"></div>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      $(function() {
+        $("#fragment_navbar").load("fragments/navbar.html", function() {
+          $("#navitem_eventos").addClass("active");
+          $("#navitem_eventos")
+            .children("a")
+            .attr("href", "#");
+        });
+      });
+
+      var eventRowOpeningHTML = '\
+      <section class="mt-5 wow fadeIn">\
+          <div class="row">\
+      ';
+
+      var eventRowClosingHTML = '\
+          </div>\
+      </section>\
+      ';
+      var eventCardHTML = '\
+      <div class="col-12 col-sm-6 col-md-4">\
+        <div class="card card-image z-depth-2 card-show"\
+          style="background-image: url(/img/events/{eventId}/{eventImg});background-size: cover;">\
+          <!-- Content -->\
+          <div class="text-white text-center rgba-black-strong py-4 px-5">\
+            <div>\
+              <h3 class="card-title pt-2"><strong>{eventTitle}</strong></h3>\
+              <p>{eventLocation}</p>\
+              <a class="btn btn-pink" href="product.html?eventId={eventId}">\
+                <i class="fa fa-ticket ml-2" aria-hidden="true"></i> Más información\
+              </a>\
+            </div>\
+          </div>\
+        </div>\
+      </div>\
+      ';
+
+      var eventGridElement = document.getElementById('event-grid');
+      $(function() {
+        $.get("/scripts/loadEvents.php", function(data) {
+          try{
+            var resp = JSON.parse(data);
+          } catch (err){
+            document.write(data);
+          }
+          if (resp.status == 0){
+            var result = '';
+            for (var i = 0; i < resp.events.length; i++) {
+              if (i % 3 == 0)
+                result += i==0? eventRowOpeningHTML: eventRowClosingHTML + eventRowOpeningHTML;
+              result += (i == resp.events.length - 1)?generateEventCard(resp.events[i]) + eventRowClosingHTML : generateEventCard(resp.events[i]);
+            }
+            eventGridElement.innerHTML += result;
+
+          } else {
+            alert("Hubo un problema al cargar los eventos. Por favor, contacte al administrador.");
+          }
+        });
+      });
+
+      function generateEventCard(event){
+        var ret = eventCardHTML;
+        ret = ret.replace(/{eventId}/g, event.Id)
+                  .replace(/{eventImg}/, event.imgcover)
+                  .replace(/{eventTitle}/, event.title)
+                  .replace(/{eventLocation}/, event.name);
+        return ret;
+      }
+    </script>
+  </body>
+</html>

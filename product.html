@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Organika</title>
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet" />
+
+    <link href="css/material-select.css" rel="stylesheet" />
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 300px;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="fragment_navbar"></div>
+    <!-- Navbar -->
+
+    <!-- Main layout -->
+    <main class="mt-5 pt-4">
+      <div class="container dark-grey-text mt-5">
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4" style="display: flex; align-items: center; flex-wrap: wrap;">
+            <img
+              id="eventCover"
+              class="img-fluid rounded z-depth-4"
+              alt="Imagen de portada"
+            />
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-4">
+            <!-- Content -->
+            <div class="p-4">
+              <div class="mb-3">
+                <a href="#">
+                </a>
+                <a href="#">
+                  <span class="badge blue mr-1" id="eventTypeName">Tipo</span>
+                </a>
+                <a href="#">
+                  <span class="badge red mr-1" id="eventLocation"
+                    >Ubicación</span
+                  >
+                </a>
+              </div>
+
+              <p id="eventName" class="lead font-weight-bold">
+                Nombre del evento
+              </p>
+
+              <p id="eventDescription">Descripción del evento.</p>
+
+              <div id="divLogin" class="logged-false">
+                <span class="font-weight-bold red-text"
+                  >Inicia sesión para adquirir entradas para éste y cientos de
+                  fantásticos eventos.</span
+                >
+                <br /><br />
+                <a class="btn btn-primary btn-md my-0 p btn-login">
+                  <i class="fa fa-user-circle ml-1"></i>&emsp;Ingresar
+                </a>
+              </div>
+
+              <div class="logged-true">
+                <div id="divFull">
+                  <span class="font-weight-bold red-text"
+                    >Todas las localidades para este evento se encuentran
+                    agotadas.</span
+                  >
+                </div>
+                <div id="divBuy">
+                  <form>
+                    <div class="row">
+                      <div class="col-6"><strong>Fecha y hora:</strong></div>
+                      <div class="col-6">
+                        <!--<select id="eventInstances" style="width: 100%;">-->
+                          <div class="select" style="width: 100%;">
+                            <select
+                              class="select-text"
+                              required
+                              style="width: 100%;"
+                              id="eventInstances"
+                            >
+                              <option value="" disabled selected></option>
+                            </select>
+                            <span class="select-highlight"></span>
+                            <span class="select-bar" style="width: 100%;"></span>
+                          </div>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6"><strong>Cantidad de entradas:</strong></div>
+                      <div class="col-6">
+                        <input
+                          type="number"
+                          value="1"
+                          aria-label="Cantidad de entradas"
+                          class="form-control"
+                          id="txtCantTickets"
+                          min="1"
+                          max="10"
+                        />
+                      </div>
+                    </div>
+
+                    <a id="btnAddToCart" class="btn btn-primary btn-md ml-0 w-100">
+                      Inscribirse <i class="fa fa-check ml-1"></i>
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <hr />
+
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-md-6 text-center">
+            <h4 class="my-4 h4">Más información</h4>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <!-- Grid column -->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <div
+              id="myMap"
+              class="rounded z-depth-1"
+              style="position:relative;width:100%;height:300px;"
+            ></div>
+          </div>
+          <div class="col-lg-8 col-md-12 mb-4">
+            <!-- Carousel Wrapper -->
+            <div
+              id="carousel-img"
+              class="carousel slide carousel-fade z-depth-1"
+              data-ride="carousel"
+            >
+              <!-- Indicators -->
+              <ol class="carousel-indicators"></ol>
+              <!-- /.Indicators -->
+              <!-- Slides -->
+              <div class="carousel-inner rounded" role="listbox"></div>
+              <!-- /.Slides -->
+              <!-- Controls -->
+              <a
+                class="carousel-control-prev"
+                href="#carousel-img"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carousel-img"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only">Siguiente</span>
+              </a>
+              <!-- /.Controls -->
+            </div>
+            <!-- /.Carousel Wrapper -->
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </main>
+    <!-- Main layout -->
+
+    <!-- Modal success -->
+    <!-- Central Modal Medium Success -->
+    <div
+      class="modal fade"
+      id="modalSuccess"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-notify modal-success" role="document">
+        <!-- Content -->
+        <div class="modal-content">
+          <!-- Header -->
+          <div class="modal-header">
+            <p class="heading lead">¡Inscripción completada con éxito!</p>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+            <div class="text-center">
+              <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+              <p>
+                Puede visualizar los datos de su inscripción en cualquier momento por medio de la sección Mis Inscripciones. Recuerde que cualquier cambio en la información del evento le será informada a través del portal.
+              </p>
+              <p>¡Disfrute el evento!</p>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer justify-content-center">
+            <a type="button" class="btn btn-success" href="/cart.html"
+              >Ir a Mis Inscripciones
+              <i class="fa fa-calendar ml-1 text-white"></i
+            ></a>
+            <a
+              type="button"
+              class="btn btn-outline-success waves-effect"
+              data-dismiss="modal"
+              >Seguir explorando</a
+            >
+          </div>
+        </div>
+        <!-- /.Content -->
+      </div>
+    </div>
+    <!-- Central Modal Medium Success -->
+    <!-- Modal success -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Nuestro JS -->
+    <script type="text/javascript" src="js/myFunc.js"></script>
+
+    <!-- Bing Maps -->
+    <script
+      type="text/javascript"
+      src="http://www.bing.com/api/maps/mapcontrol?callback=onMapLoad&key=AuN31wXokYBB_JTNXvIzWBqfpf3bz8Vf9MTj62aKxt5IxBtaFjn-krvyOw8oDZgu"
+      async
+      defer
+    ></script>
+
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      var mapData = null;
+      var eventId;
+
+      function onMapLoad() {
+        if (mapData != null) {
+          renderMap(
+            mapData.lat,
+            mapData.long,
+            mapData.locationName,
+            mapData.locationAddress
+          );
+        } else {
+          setTimeout(onMapLoad, 250);
+        }
+      }
+
+      function renderMap(lat, long, caption, address) {
+        var map = new Microsoft.Maps.Map(document.getElementById("myMap"), {});
+        map.setView({
+          center: new Microsoft.Maps.Location(lat, long),
+          zoom: 15
+        });
+
+        map.setOptions({
+          maxZoom: 17,
+          minZoom: 13,
+          showZoomButtons: false,
+          showScalebar: false,
+          showMapTypeSelector: false,
+          enableClickableLogo: false,
+          allowInfoboxOverflow: true
+        });
+
+        var center = map.getCenter();
+
+        var pushpin = new Microsoft.Maps.Pushpin(center, {
+          title: caption,
+          subTitle: address,
+          icon: "https://www.bingmapsportal.com/Content/images/poi_custom.png",
+          anchor: new Microsoft.Maps.Point(12, 39)
+        });
+
+        var infobox = new Microsoft.Maps.Infobox(center, {
+          title: caption,
+          description: address,
+          visible: false,
+          actions: [
+            {
+              label: "Obtener indicaciones",
+              eventHandler: function() {
+                alert("¿Como carajo llego acá sin pasar por Mordor?");
+              }
+            }
+          ]
+        });
+        infobox.setMap(map);
+        Microsoft.Maps.Events.addHandler(pushpin, "click", function() {
+          infobox.setOptions({ visible: true });
+        });
+
+        map.entities.push(pushpin);
+      }
+
+      function fillEventData() {
+        $.get("scripts/event/load.php", { eventId: eventId }, function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 1) {
+            alert("El evento solicitado no existe.");
+            return;
+          }
+
+          var eventData = resp.eventData;
+          var eventInstances = resp.eventInstances;
+
+          mapData = {
+            lat: eventData.lat,
+            long: eventData.lon,
+            locationName: eventData.locationName,
+            locationAddress: eventData.locationAddress
+          };
+
+          $("#eventCover").attr(
+            "src",
+            "img/events/" + eventId + "/" + eventData.imgCover
+          );
+
+          $eventDropdown = $("#eventInstances");
+
+          $eventDropdown.find("option").remove();
+
+          var isEventFull = true;
+
+          for (var i = 0; i < eventInstances.length; i++) {
+            var date = new Date(
+              eventInstances[i].date + " " + eventInstances[i].time
+            );
+            var option;
+            if (eventInstances[i].isFull == true)
+              option = $("<option />")
+                .val(eventInstances[i].id)
+                .text(englishToSpanishDateString(eventInstances[i].date) + ", " + formatTime(date) + " (Agotada)")
+                .attr("disabled", "disabled");
+            else {
+              option = $("<option />")
+                .val(eventInstances[i].id)
+                .text(englishToSpanishDateString(eventInstances[i].date) + ", " + formatTime(date));
+              isEventFull = false;
+            }
+
+            $eventDropdown.append(option);
+          }
+
+          if (isEventFull) {
+            $("#txtCantTickets").prop("disabled", true);
+            $("#btnAddToCart").prop("disabled", true);
+            $("#divBuy").hide();
+            $("#divFull").show();
+          } else {
+            $("#divFull").hide();
+            $("#divBuy").show();
+          }
+
+          //$("#eventArtistName").html(eventData.artistName);
+          $("#eventTypeName").html(eventData.eventType);
+          $("#eventLocation").html(eventData.locationName);
+          //$("#eventTicketPrice").html("$" + eventData.ticketPrice);
+          $("#eventName").html(eventData.title);
+          $("#eventDescription").html(eventData.description);
+        });
+      }
+
+      $(function() {
+        $("#fragment_navbar").load("fragments/navbar.html");
+
+        eventId = getUrlParameter("eventId");
+
+        fillEventData();
+
+        loadCarousel();
+
+        $("#btnAddToCart").click(function() {
+          $.post("scripts/event/addtocart.php", {
+            eventId: eventId,
+            eventInstanceId: $("#eventInstances").val(),
+            ticketAmount: $("#txtCantTickets").val()
+          })
+            .done(function(msg) {
+              var resp = JSON.parse(msg);
+              if (resp.status == 0) {
+                updateTicketCount();
+                $("#modalSuccess").modal("show");
+                fillEventData();
+              } else if (resp.status == 1) {
+                alert(
+                  "No hay suficientes entradas disponibles como para satisfacer su pedido."
+                );
+              } else {
+                alert(
+                  "Ha ocurrido un error ejecutando su pedido. Por favor, contacte a un administrador."
+                );
+              }
+            })
+            .fail(function(xhr, status, error) {
+              alert(error);
+            });
+        });
+      });
+
+      function loadCarousel() {
+        $.get("scripts/event/getmedia.php", { eventId: eventId }, function(
+          data
+        ) {
+          var resp = JSON.parse(data);
+          $carousel = $("#carousel-img");
+          for (let i = 0; i < resp.images.length; i++) {
+            $carousel
+              .children(".carousel-indicators")
+              .append(
+                "<li data-target='#carousel-img' data-slide-to='" + i + "' />"
+              );
+
+            $carousel.children(".carousel-inner").append(
+              `
+<div class="carousel-item">
+<img
+class="d-block w-100"
+src="/img/events/` +
+                eventId +
+                `/` +
+                resp.images[i] +
+                `"
+/>
+</div>`
+            );
+          }
+
+          for (let i = 0; i < resp.videos.length; i++) {
+            $carousel
+              .children(".carousel-indicators")
+              .append(
+                "<li data-target='#carousel-img' data-slide-to='" +
+                  (i + resp.images.length) +
+                  "' />"
+              );
+
+            $carousel.children(".carousel-inner").append(
+              `<div class="carousel-item">
+                                                                                                                                                                                                                                                                                        <div class="view">
+                                                                                                                                                                                                                                                                                          <!-- Video source -->
+                                                                                                                                                                                                                                                                                <video class="video-intro" autoplay loop muted>
+                                                                                                                                                                                                                                                                                            <source src="/img/events/` +
+                eventId +
+                "/" +
+                resp.videos[i] +
+                `" />
+                                                                                                                                                                                                                                                                                          </video>
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                      </div>`
+            );
+          }
+
+          $carousel
+            .children(".carousel-indicators")
+            .children("li")
+            .first()
+            .addClass("active");
+
+          $carousel
+            .children(".carousel-inner")
+            .children(".carousel-item")
+            .first()
+            .addClass("active");
+        });
+      }
+    </script>
+  </body>
+</html>

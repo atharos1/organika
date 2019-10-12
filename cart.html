@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Organika</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet" />
+
+    <style>
+      .no-space p {
+        margin: 0 !important;
+      }
+    </style>
+
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 60vh;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+      }
+    </style>
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="fragment_navbar"></div>
+    <!-- Navbar -->
+
+    <!-- Main layout -->
+    <main class="mt-5 pt-4">
+      <div class="container dark-grey-text mt-5">
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <p class="lead font-weight-bold">Mis inscripciones</p>
+        </div>
+        <!-- Grid row -->
+
+        <!-- Grid row -->
+        <div class="row wow fadeIn">
+          <div class="col-12">
+            <h3 id="emptyText" class="text-center">
+              No tienes tickets activos. ¡Explora entre cientos de eventos!
+            </h3>
+            <table
+              id="activeTickets"
+              class="table table-hover table-sm"
+              style="width: 100%;"
+            >
+              <thead>
+                <tr>
+                  <th scope="col" width="150px"></th>
+                  <th scope="col">Evento</th>
+                  <th scope="col" class="text-center">Tipo</th>
+                  <th scope="col" class="text-center">Fecha y hora</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Grid row -->
+      </div>
+    </main>
+    <!-- Main layout -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- Nuestro JS -->
+    <script type="text/javascript" src="js/myFunc.js"></script>
+
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      function createRowHtml(ticket) {
+        var ticketDate = new Date(ticket.eventDate + " " + ticket.eventTime);
+        return (
+          `<tr>
+                                                                                              < th scope = "row" class="text-center align-middle" >
+                                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                                      </th >
+                                                                  
+                                                                                              <td>
+                                                                                                <img
+                                                                                                  src="/img/events/` +
+          ticket.eventId +
+          `/` +
+          ticket.imgCover +
+          `"
+                                                                                                  alt="thumbnail"
+                                                                                                  class="img-thumbnail"
+                                                                                                  style="width: 130px"
+                                                                                                />
+                                                                                              </td>
+                                                                  
+                                                                                              <td class="no-space">
+                                                                                                <p><strong>` +
+          ticket.title +
+          `</strong></p><p>` +
+          ticket.locationName +
+          `</p>
+                                                                <p>` +
+          ticket.locationAddress +
+          `</p>
+                                                              </td>
+                                                                                              <td class="text-center">` +
+          ticket.eventType +
+          `</td>
+                                                                                              <td class="text-center">` +
+                                                                                                  englishToSpanishDateString(ticket.eventDate) + `, ` + formatTime(ticketDate) +
+          `hs</td>
+                                                                                                    </tr >`
+        );
+      }
+
+      $(function() {
+        $.get("/scripts/session/checklogin.php", function(data) {
+          var resp = JSON.parse(data);
+          if (!resp.logged) window.location.replace("/index.html");
+        });
+
+        $("#fragment_navbar").load("/fragments/navbar.html", function() {
+          //$("#navitem_cart").addClass("active");
+          $("#navitem_cart")
+            .children("a")
+            .attr("href", "#");
+        });
+
+        $.get("/scripts/event/fillcart.php", function(data) {
+          var resp = JSON.parse(data);
+          if (resp.status == 0) {
+            $("#emptyText").hide();
+            for (let i = 0; i < resp.tickets.length; i++) {
+              $("#activeTickets > tbody:last-child").append(
+                createRowHtml(resp.tickets[i])
+              );
+            }
+          } else if (resp.status == 1) {
+            $("#activeTickets").hide();
+          } else {
+            alert("Error");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

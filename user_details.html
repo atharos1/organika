@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container text-center">
+    <p class="h1 mb-4 text-center mt-3">Fulano Detal</p>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-4 mb-4">
+        <div class="card mdb-color text-center z-depth-2">
+          <div class="card-body hoverable">
+            <h3 class="text-uppercase font-weight-bold white-text mt-2 mb-2"><strong><i class="fas fa-phone mr-3"></i></strong></h3>
+            <p class="white-text mb-0">11-5555-5555</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 mb-4">
+        <div class="card red darken-4 text-center z-depth-2">
+          <div class="card-body hoverable">
+            <h3 class="text-uppercase font-weight-bold white-text mt-2 mb-2"><strong><i class="fas fa-envelope mr-3"></i></strong></h3>
+            <p class="white-text mb-0">correo@itba.edu.ar</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <br>
+    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="instructor-tab" data-toggle="tab" href="#instructor" role="tab" aria-controls="instructor"
+          aria-selected="true">Calificaciones como instructor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="participante-tab" data-toggle="tab" href="#participante" role="tab" aria-controls="participante"
+          aria-selected="false">Calificaciones como participante</a>
+      </li>
+    </ul>
+    <div class="tab-content mt-5" id="myTabContent">
+      <div class="tab-pane fade show active" id="instructor" role="tabpanel" aria-labelledby="home-tab">
+        <div class="row">
+          <div class="col-4"><label for="textInput">Claridad</label></div>
+          <div class="col-4"><label for="textInput">Dominio de Conceptos</label></div>
+          <div class="col-4"><label for="textInput">Pedagogía</label></div>
+        </div>
+        <div class="row">
+          <div class="col-4"><span id="stars-claridad"></span></div>
+          <div class="col-4"><span id="stars-dominio"></span></div>
+          <div class="col-4"><span id="stars-pedagogia"></span></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4"><label for="textInput">Predisposición</label></div>
+          <div class="col-4"><label for="textInput">Entusiasmo</label></div>
+          <div class="col-4"><label for="textInput">Respeto</label></div>
+        </div>
+        <div class="row">
+          <div class="col-4"><span id="stars-predisposicion"></span></div>
+          <div class="col-4"><span id="stars-entusiasmo"></span></div>
+          <div class="col-4"><span id="stars-respeto"></span></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="participante" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row">
+          <div class="col-3"><label for="textInput">Trabajo en Equipo</label></div>
+          <div class="col-3"><label for="textInput">Liderazgo</label></div>
+          <div class="col-3"><label for="textInput">Ingenio</label></div>
+          <div class="col-3"><label for="textInput">Creatividad</label></div>
+        </div>
+        <div class="row">
+          <div class="col-3"><span id="stars-trabajo"></span></div>
+          <div class="col-3"><span id="stars-liderazgo"></span></div>
+          <div class="col-3"><span id="stars-ingenio"></span></div>
+          <div class="col-3"><span id="stars-creatividad"></span></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-3"><label for="textInput">Proactividad</label></div>
+          <div class="col-3"><label for="textInput">Calidad de Idea</label></div>
+          <div class="col-3"><label for="textInput">Calidad de Implementación</label></div>
+          <div class="col-3"><label for="textInput">Potencial</label></div>
+        </div>
+        <div class="row">
+          <div class="col-3"><span id="stars-proactividad"></span></div>
+          <div class="col-3"><span id="stars-idea"></span></div>
+          <div class="col-3"><span id="stars-implementacion"></span></div>
+          <div class="col-3"><span id="stars-potencial"></span></div>
+        </div>
+      </div>
+    </div>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script src="js/addons/rating.js"></script>
+  <script> $(document).ready(function() {  $('#stars-claridad').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-dominio').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-pedagogia').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-predisposicion').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-entusiasmo').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-respeto').mdbRate();});</script>
+
+  <script> $(document).ready(function() {  $('#stars-trabajo').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-liderazgo').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-ingenio').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-creatividad').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-proactividad').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-idea').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-implementacion').mdbRate();});</script>
+  <script> $(document).ready(function() {  $('#stars-potencial').mdbRate();});</script>
+</body>
+</html>

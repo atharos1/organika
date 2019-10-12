@@ -1,0 +1,134 @@
+<style>
+  .logged-true,
+  .logged-false {
+    display: none;
+  }
+</style>
+
+<nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar"
+>
+  <div class="container">
+    <!-- Brand -->
+    <a id="navbar_title" class="navbar-brand" href="index.html">
+      <i class="fa fa-code ml-2" aria-hidden="true"></i>
+      <strong>Organika</strong>
+    </a>
+
+    <!-- Collapse -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left -->
+      <ul id="navbar-nav" class="navbar-nav mr-auto">
+
+
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item logged-false">
+          <a class="nav-link btn-login">
+            <i class="fa fa-user-circle" aria-hidden="true"></i> Ingresar
+          </a>
+        </li>
+        <li class="nav-item dropdown logged-true">
+          <a
+            class="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >¡Hola, <strong id="user-name"></strong>!</a
+          >
+          <div class="dropdown-menu dropdown-primary">
+            <a class="dropdown-item disabled" href="#">Mi perfil</a>
+            <a class="dropdown-item btn-logout">Cerrar sesión</a>
+          </div>
+        </li>
+        <li class="nav-item logged-true" id="navitem_cart">
+          <a
+            class="nav-link waves-effect border border-light rounded"
+            href="cart.html"
+          >
+            <span class="badge red z-depth-1 mr-1" id="validTicketCount">
+              0
+            </span>
+            <i class="fa fa-calendar"></i>
+            <span class="clearfix d-none d-inline-block">
+              Mis inscripciones
+            </span>
+          </a>
+        </li>
+        &nbsp;
+        <li class="nav-item logged-true priv-1" id="navitem_organizer">
+          <a
+            class="nav-link waves-effect border border-light rounded orange-text"
+            href="myevents.html"
+          >
+            <i class="fa fa-diamond"></i>
+            <span class="clearfix d-none d-inline-block">
+              Panel de organizador
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Nuestro JS -->
+<script type="text/javascript" src="js/myFunc.js"></script>
+
+<script>
+  function updateTicketCount() {
+    $.get("scripts/event/validticketcount.php", function(data) {
+      var resp = JSON.parse(data);
+      if (resp.status == 0) {
+        $("#validTicketCount").html(resp.ticketCount + " ");
+      } else {
+        alert("Error. Contacte a un administrador.");
+      }
+    });
+  }
+
+  $(".btn-login").click(function() {
+    window.location.href =
+      "login.html?prev=" + encodeURIComponent(getRelativeUrl());
+  });
+
+  $(".btn-logout").click(function() {
+    window.location.href =
+      "scripts/session/logout.php?prev=" + encodeURIComponent(getRelativeUrl());
+  });
+
+  $(function() {
+    $.get("/scripts/session/checklogin.php", function(data) {
+      var resp = JSON.parse(data);
+      if (resp.logged) {
+        $("#user-name").html(resp.name.toUpperCase());
+        $(".logged-true").show();
+        $(".logged-false").hide();
+
+        if (resp.userType < 2) $(".priv-2").hide();
+        if (resp.userType < 1) $(".priv-1").hide();
+
+        updateTicketCount();
+      } else {
+        $(".logged-true").hide();
+        $(".logged-false").show();
+      }
+    });
+  });
+</script>

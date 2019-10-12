@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>TuviTicket</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/snackbar.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/selectize.default.css" />
+
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      sizes="16x16 32x32 64x64"
+      href="/img/favicon/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="196x196"
+      href="/img/favicon/favicon-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="160x160"
+      href="/img/favicon/favicon-160.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/img/favicon/favicon-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/img/favicon/favicon-64.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16.png"
+    />
+    <link rel="apple-touch-icon" href="/img/favicon/favicon-57.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/img/favicon/favicon-114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/img/favicon/favicon-72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/favicon/favicon-144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/img/favicon/favicon-60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/img/favicon/favicon-120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/img/favicon/favicon-76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/img/favicon/favicon-152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/favicon-180.png"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/favicon/favicon-144.png"
+    />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+  </head>
+
+  <body>
+    <div
+      class="view full-page-intro"
+      style="background-image: url('/img/login.png'); background-repeat: no-repeat; background-size: cover;"
+    >
+      <!-- Mask & flexbox options -->
+      <div
+        class="mask rgba-black-light d-flex justify-content-center align-items-center"
+      >
+        <!-- Content -->
+        <div class="container justify-content-center align-items-center">
+          <div class=" white-text text-center">
+            <h1 class="display-4 font-weight-bold">
+              <i class="fa fa-ticket ml-2" aria-hidden="true"></i> TuviTicket
+            </h1>
+
+            <hr class="hr-light" />
+
+            <p><strong> Espere un momento, por favor. </strong></p>
+
+            <p>
+              <strong>
+                Estamos confirmando su dirección de correo electrónico...
+              </strong>
+            </p>
+          </div>
+        </div>
+        <!-- Content -->
+      </div>
+      <!-- Mask & flexbox options -->
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+
+    <script>
+      window.addEventListener("load", function() {
+        var url = new URL(window.location.href);
+        var mail = url.searchParams.get("mail");
+        var key = url.searchParams.get("key");
+        $.post(
+          "/scripts/session/confirmation.php?mail=" + mail + "&key=" + key,
+          $(this).serialize()
+        )
+          .done(function(msg) {
+            var resp = JSON.parse(msg);
+            if (resp.status == 0) {
+              alert("Se ha confirmado el usuario con éxito!");
+              window.location.replace("/index.html");
+            } else if (resp.status == 1) {
+              alert("El usuario ya estaba confirmado!");
+              window.location.replace("/index.html");
+            } else {
+              alert("Ocurrió un error y no se pudo confirmar el usuario.");
+              window.location.replace("/index.html");
+            }
+          })
+          .fail(function(xhr, status, error) {
+            alert(error);
+          });
+      });
+    </script>
+  </body>
+</html>
